@@ -1,42 +1,48 @@
 version: 2.1
 jobs:
-  deployDesarrollo:
+  ProductionEnvironment:
     docker:
       - image: circleci/openjdk
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "b5:81:5e:e5:31:bf:2b:e0:ea:fb:f6:a5:4c:1f:5b:14"
+            - "5a:c6:35:7a:2c:60:f6:48:4c:80:1c:ca:54:cc:8a:c0"
       - checkout
       - run:
-          name: "Deploy development"
+          name: "Ejecucion"
           command: |
-            sudo touch /home/circleci/.ssh/authorized_keys
-            chmod 0600 secondtry.pem
-            cd /home/circleci/.ssh
-            sudo nano authorized_keys
-            scp -v -o StrictHostKeyChecking=no -i a.pem -r index.html ec2-54-81-178-93.compute-1.amazonaws.com:/var/www/html/index.html
-  deployProduccion:
+            echo "Estamos dentro"
+            ls --all
+            pwd
+            echo "terminamos xd"
+            scp -o StrictHostKeyChecking=no -r index.html 18.211.47.194:/var/www/html/index.html
+            
+  DevelopmentEnvironment:
     docker:
       - image: circleci/openjdk
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "b5:81:5e:e5:31:bf:2b:e0:ea:fb:f6:a5:4c:1f:5b:14"
+            - "5a:c6:35:7a:2c:60:f6:48:4c:80:1c:ca:54:cc:8a:c0"
       - checkout
       - run:
           name: "Deploy production"
           command: |
-            scp -o StrictHostKeyChecking=no -r index.html ec2-54-81-178-93.compute-1.amazonaws.com:/var/www/html/index.html
+           echo "Estamos dentro"
+            ls --all
+            pwd
+            echo "terminamos xd"
+            scp -o StrictHostKeyChecking=no -r index.html 18.211.47.194:/var/www/html/index.html
+            
 workflows: 
   version: 2
   Ejecutar:
     jobs:
-      - deployDesarrollo
+      - DevelopmentEnvironment
       - request-testing:
           type: approval
           requires:
-            - deployDesarrollo
+            - DevelopmentEnvironment
       - deployProduccion:
           requires:
             - request-testing
