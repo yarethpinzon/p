@@ -31,7 +31,7 @@ jobs:
            echo "Estamos dentro"
             ls --all
             pwd
-            echo "terminamos xd"
+            echo "terminamos vamos xd"
             scp -o StrictHostKeyChecking=no .circleci/index.html ubuntu@35.172.202.146:/var/www/html/index.html
             
 workflows: 
