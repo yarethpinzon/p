@@ -9,7 +9,7 @@ jobs:
             - "5a:c6:35:7a:2c:60:f6:48:4c:80:1c:ca:54:cc:8a:c0"
       - checkout
       - run:
-          name: "Ejecucion"
+          name: "Ejecutar"
           command: |
             echo "Estamos dentro"
             ls --all
