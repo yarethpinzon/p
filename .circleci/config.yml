@@ -15,7 +15,7 @@ jobs:
             ls --all
             pwd
             echo "terminamos xd"
-            scp -o StrictHostKeyChecking=no -r index.html ubuntu@10.98.2.149:/var/www/html/index.html
+            scp -o StrictHostKeyChecking=no index.html ubuntu@18.211.47.194:/var/www/html/index.html
             
   DevelopmentEnvironment:
     docker:
@@ -32,7 +32,7 @@ jobs:
             ls --all
             pwd
             echo "terminamos xd"
-            scp -o StrictHostKeyChecking=no -r index.html ubuntu@10.98.5.28:/var/www/html/index.html
+            scp -o StrictHostKeyChecking=no index.html ubuntu@35.172.202.146:/var/www/html/index.html
             
 workflows: 
   version: 2
