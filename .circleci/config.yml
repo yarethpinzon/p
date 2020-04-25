@@ -43,6 +43,6 @@ workflows:
           type: approval
           requires:
             - DevelopmentEnvironment
-      - deployProduccion:
+      - ProductionEnvironment:
           requires:
             - request-testing
